@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test CORS</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header"><h3>Test CORS Enabled</h3></div>
+            <div class="card-body">
+              <form>
+                <div class="form-group row">
+                  <label for="txtUrl" class="col-sm-2 col-form-label">Url</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="txtUrl" />
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="offset-sm-2 col-sm-auto">
+                    <button type="button" id="btnCheck" class="btn btn-primary btn-lg">Check</button>
+                  </div>
+                  <div class="col">
+                    <div id="mess" class="alert sr-only" role="alert">Worked</div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#btnCheck").click(function () {
+          url = $.trim($("#txtUrl").val());
+          $.ajax({
+            url: url,
+            type: "GET",
+            success: function (data) {
+              console.log(data);
+              $("#mess").removeClass("sr-only alert-danger").addClass("alert-success").html("CORS Enabled!");
+            },
+            error: function (data) {
+              console.log(data);
+              $("#mess").removeClass("sr-only alert-success").addClass("alert-danger").html("Error!");
+            },
+          });
+        });
+
+        /*$('#btnCheck').click(function(){
+                url = "https://api.caodangsaigon.edu.vn/login";
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+					dataType: 'json',
+					headers: {"Content-Type": "application/json"},
+					data: {username: '20-0-10006', password: 'abc123'},
+                    success: function(data){
+						$('#mess').removeClass('sr-only alert-danger').addClass('alert-success').html('CORS Enabled!');
+                    },
+                    error: function(data) {
+                        $('#mess').removeClass('sr-only alert-success').addClass('alert-danger').html('Error!');
+                    }
+                });
+            }); */
+      });
+    </script>
+  </body>
+</html>
