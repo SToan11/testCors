@@ -44,4 +44,4 @@
 
 ## Hình ảnh minh họa
 
-![Giao diện kiểm tra CORS](image/screenshot.png)
+![Giao diện kiểm tra CORS](image/Screenshot.png)
